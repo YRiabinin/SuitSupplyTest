@@ -4,11 +4,9 @@
 ({
     callAction : function(action, params, successCallback) {
         if (action) {
-            console.log('HELPER params', params);
             action.setParams(params);
             action.setCallback(this, function(response) {
                 var state = response.getState();
-                console.log('HELPER state', state);
                 if (state === "SUCCESS") {
                     successCallback(response);
                 } else if (state === "ERROR") {

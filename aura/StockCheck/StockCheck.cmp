@@ -54,48 +54,4 @@
             <lightning:button label="Reset" onclick="{!c.reset}" />
         </lightning:layoutItem>
     </lightning:layout>
-
-    <!--<lightning:card class="slds-card_inner">
-        <lightning:layout multipleRows="true">
-            <lightning:layoutItem size="12">
-                <lightning:select aura:id="storesSelect" label="Store">
-                    <aura:iteration items="{!v.stores}" var="store">
-                        <option text="{!store.Name}" value="{!store.Stock_location_id__c}" />
-                    </aura:iteration>
-                </lightning:select>
-            </lightning:layoutItem>
-            <lightning:layoutItem size="12">
-                <div onkeyup="{! c.searchProducts }">
-                    <lightning:input
-                            aura:id="searchProduct"
-                            name="searchProduct"
-                            label="Search Product"
-                            value="{!v.productSearch}"
-                            type="search"
-                    />
-                </div>
-                <div style="height: 200px">
-                    <lightning:datatable aura:id="productsTable"
-                                         keyField="id"
-                                         columns="{!v.productColumns}"
-                                         data="{!v.products}"
-                                         enableInfiniteLoading="true"
-                                         maxRowSelection="1" />
-                </div>
-            </lightning:layoutItem>
-            <lightning:layoutItem size="12">
-                <div style="height: 100px">
-                    <lightning:datatable aura:id="stockTable"
-                                         keyField="id"
-                                         columns="{!v.stockColumns}"
-                                         data="{!v.stock}"
-                                         hideCheckboxColumn="true" />
-                </div>
-            </lightning:layoutItem>
-        </lightning:layout>
-        <aura:set attribute="footer">
-            <lightning:button label="Check Stock" onclick="{!c.checkStock}" variant="brand" />
-            <lightning:button label="Reset" onclick="{!c.reset}" />
-        </aura:set>
-    </lightning:card>-->
 </aura:component>
