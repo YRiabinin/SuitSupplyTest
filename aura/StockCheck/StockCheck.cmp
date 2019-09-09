@@ -1,0 +1,101 @@
+<!--
+ - Created by Eugene on 07.09.2019.
+ -->
+
+<aura:component implements="flexipage:availableForAllPageTypes" controller="StockCheckController" description="StockCheck">
+    <aura:attribute name="productSearch" type="String" />
+    <aura:attribute name="productColumns" type="List" />
+    <aura:attribute name="products" type="Product2[]" default="[]" />
+
+    <aura:attribute name="stores" type="Store__c[]" default="[]" />
+
+    <aura:attribute name="stockColumns" type="List" />
+    <aura:attribute name="stock" type="List" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+    <lightning:layout multipleRows="true">
+        <lightning:layoutItem size="12" class="slds-p-horizontal_small">
+            <lightning:select aura:id="storesSelect" label="Store">
+                <aura:iteration items="{!v.stores}" var="store">
+                    <option text="{!store.Name}" value="{!store.Stock_location_id__c}" />
+                </aura:iteration>
+            </lightning:select>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" class="slds-p-horizontal_small">
+            <div onkeyup="{! c.searchProducts }" class="slds-p-bottom_x-small">
+                <lightning:input
+                        aura:id="searchProduct"
+                        name="searchProduct"
+                        placeholder="Search Product"
+                        value="{!v.productSearch}"
+                        type="search"
+                />
+            </div>
+            <div style="height: 200px">
+                <lightning:datatable aura:id="productsTable"
+                                     keyField="id"
+                                     columns="{!v.productColumns}"
+                                     data="{!v.products}"
+                                     maxRowSelection="1" />
+            </div>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" class="slds-p-horizontal_small">
+            <div style="height: 150px">
+                <lightning:datatable aura:id="stockTable"
+                                     keyField="id"
+                                     columns="{!v.stockColumns}"
+                                     data="{!v.stock}"
+                                     hideCheckboxColumn="true" />
+            </div>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" class="slds-card__footer" >
+            <lightning:button label="Check Stock" onclick="{!c.checkStock}" variant="brand" />
+            <lightning:button label="Reset" onclick="{!c.reset}" />
+        </lightning:layoutItem>
+    </lightning:layout>
+
+    <!--<lightning:card class="slds-card_inner">
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="12">
+                <lightning:select aura:id="storesSelect" label="Store">
+                    <aura:iteration items="{!v.stores}" var="store">
+                        <option text="{!store.Name}" value="{!store.Stock_location_id__c}" />
+                    </aura:iteration>
+                </lightning:select>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12">
+                <div onkeyup="{! c.searchProducts }">
+                    <lightning:input
+                            aura:id="searchProduct"
+                            name="searchProduct"
+                            label="Search Product"
+                            value="{!v.productSearch}"
+                            type="search"
+                    />
+                </div>
+                <div style="height: 200px">
+                    <lightning:datatable aura:id="productsTable"
+                                         keyField="id"
+                                         columns="{!v.productColumns}"
+                                         data="{!v.products}"
+                                         enableInfiniteLoading="true"
+                                         maxRowSelection="1" />
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12">
+                <div style="height: 100px">
+                    <lightning:datatable aura:id="stockTable"
+                                         keyField="id"
+                                         columns="{!v.stockColumns}"
+                                         data="{!v.stock}"
+                                         hideCheckboxColumn="true" />
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <aura:set attribute="footer">
+            <lightning:button label="Check Stock" onclick="{!c.checkStock}" variant="brand" />
+            <lightning:button label="Reset" onclick="{!c.reset}" />
+        </aura:set>
+    </lightning:card>-->
+</aura:component>
